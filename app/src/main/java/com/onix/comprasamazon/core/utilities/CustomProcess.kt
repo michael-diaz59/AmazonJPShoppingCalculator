@@ -1,4 +1,6 @@
-package com.onix.comprasamazon.utilities.domain
+package com.onix.comprasamazon.core.utilities
+
+import com.onix.comprasamazon.core.exceptions.errors.AppError
 
 class CustomProcess private constructor(private var isSuccessful: Boolean = false,private var error: AppError? = null) {
     companion object {
@@ -11,7 +13,7 @@ class CustomProcess private constructor(private var isSuccessful: Boolean = fals
         }
     }
 
-    fun getError():AppError?{
+    fun getError(): AppError?{
         return error
     }
 

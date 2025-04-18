@@ -1,4 +1,7 @@
-package com.onix.comprasamazon.utilities.domain
+package com.onix.comprasamazon.core.domain
+
+import com.onix.comprasamazon.core.exceptions.errors.AppError
+import com.onix.comprasamazon.core.exceptions.errors.ErrorType
 
 
 abstract class UseCase<T> {
@@ -9,7 +12,7 @@ abstract class UseCase<T> {
     abstract fun execute()
 
     fun getError(): AppError {
-        val errorR=AppError()
+        val errorR= AppError()
         if (appError == null) {
             println("error in order of execute or creation of responseError");
             errorR.errorTitle = "error no mapeado"

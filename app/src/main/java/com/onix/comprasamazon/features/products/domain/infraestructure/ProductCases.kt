@@ -1,7 +1,7 @@
 package com.onix.comprasamazon.features.products.domain.infraestructure
 
 import com.onix.comprasamazon.features.products.domain.business.entitites.BaseProduct
-import com.onix.comprasamazon.utilities.domain.CustomProcess
+import com.onix.comprasamazon.core.utilities.CustomProcess
 
 interface ProductCases {
     fun createProduct(): CustomProcess

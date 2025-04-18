@@ -1,4 +1,4 @@
-package com.onix.comprasamazon.features.products.repository.room
+package com.onix.comprasamazon.features.products.data.local.room
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -15,7 +15,7 @@ interface DAOProduct {
     suspend fun delete(product: RoomProduct): Long
 
     @Update
-    suspend fun update(product:RoomProduct): Long
+    suspend fun update(product: RoomProduct): Long
 
     @Query("SELECT * FROM RoomProduct")
     suspend fun getAll(): List<RoomProduct>

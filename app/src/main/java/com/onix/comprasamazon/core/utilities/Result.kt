@@ -1,4 +1,6 @@
-package com.onix.comprasamazon.utilities.domain
+package com.onix.comprasamazon.core.utilities
+
+import com.onix.comprasamazon.core.exceptions.errors.AppError
 
 class Result<T> private constructor(
     private var isSuccessful: Boolean = false,

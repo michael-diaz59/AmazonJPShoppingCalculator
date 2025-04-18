@@ -1,5 +1,6 @@
 package com.onix.comprasamazon.ui.screens
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 import com.onix.comprasamazon.features.buyer.domian.Buyer
-import com.onix.comprasamazon.features.products.domain.Product
+import com.onix.comprasamazon.ui.features.product.UIProduct
 
 
 @Composable
@@ -42,11 +43,12 @@ fun StepOne() {
     }
 }
 
+@SuppressLint("MutableCollectionMutableState")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductListScreen() {
     var products by remember {
-        mutableStateOf(listOf<Product>())
+        mutableStateOf(mutableListOf<UIProduct>())
     }
 
     var addDialog by remember {
@@ -57,7 +59,7 @@ fun ProductListScreen() {
     }
 
     var selectedItems by remember { mutableStateOf(setOf<Int>()) }
-    var editingItem by remember { mutableStateOf<Product?>(null) }
+    var editingItem by remember { mutableStateOf<UIProduct?>(null) }
 
     val isSelectionMode = selectedItems.isNotEmpty()
 
@@ -70,7 +72,16 @@ fun ProductListScreen() {
                 actions = {
                     if (isSelectionMode) {
                         IconButton(onClick = {
-                            products = products.filterNot { selectedItems.contains(it.id) }
+
+                            val iterator = products.iterator()
+
+                            while (iterator.hasNext()) {
+                                val product = iterator.next()
+                                if (product.id in selectedItems) {
+                                    iterator.remove()  // Elimina de forma segura durante la iteración
+                                }
+                            }
+
                             selectedItems = emptySet()
                         }) {
                             Icon(Icons.Default.Delete, contentDescription = "Eliminar")
@@ -82,15 +93,15 @@ fun ProductListScreen() {
 
         floatingActionButton = {
             FloatingActionButton(onClick = {
-                addDialog=true
-/*
-                val newItem = Product(
-                    id = (products.maxOfOrNull { it.id } ?: 0) + 1,
-                    name = "Nuevo Item", buyer = Buyer()
-                )
-                products = products + newItem
+                addDialog = true
+                /*
+                                val newItem = Product(
+                                    id = (products.maxOfOrNull { it.id } ?: 0) + 1,
+                                    name = "Nuevo Item", buyer = Buyer()
+                                )
+                                products = products + newItem
 
- */
+                 */
             }) {
                 Icon(Icons.Default.Add, contentDescription = "Agregar")
             }
@@ -112,74 +123,79 @@ fun ProductListScreen() {
                 HorizontalDivider()
             }
         }
-        if(addDialog){
-            ProductDialog(null,products)
+        if (addDialog) {
+            ProductDialog(null, products) {
+                products.add(it)
+            }
         }
         if (editingItem != null && !isSelectionMode) {
-            ProductDialog(editingItem, products)
+            ProductDialog(editingItem, products) {
+                products.map {
+                    if (it.id == editingItem!!.id) {
+                        it.copy(editingItem!!)
+                    }
+                }
+
+            }
         }
     }
 }
 
 @Composable
-fun ProductDialog(editingItem2: Product?, products2: List<Product>) {
+fun ProductDialog(
+    editingItem2: UIProduct?,
+    products: List<UIProduct>,
+    onProducts: (UIProduct) -> Unit
+) {
     var name by remember { mutableStateOf("") }
     val buyer by remember { mutableStateOf(Buyer()) }
     var productValue by remember { mutableStateOf("") }
     var shippingValue by remember { mutableStateOf("") }
 
     var editingItem by remember { mutableStateOf(editingItem2) }
-    var products by remember {
-        mutableStateOf(products2)
-    }
+
 
     val product by remember {
-        mutableStateOf(Product())
+        mutableStateOf(UIProduct(buyer = 0L, name = ""))
     }
-        AlertDialog(
-            onDismissRequest = { editingItem = null },
-            title = { Text("Editar nombre") },
-            text = {
-                Column {
-                    Row {
-                        numberTextField(name) { name = it }
-                        numberTextField(buyer.name) {buyer.name = it}
-                    }
-                    Row {
-                        numberTextField(productValue) {productValue=it}
-                        numberTextField(shippingValue) {shippingValue=it}
-                    }
+    AlertDialog(
+        onDismissRequest = { editingItem = null },
+        title = { Text("Editar nombre") },
+        text = {
+            Column {
+                Row {
+                    numberTextField(name) { name = it }
+                    numberTextField(buyer.name) { buyer.name = it }
                 }
-
-            },
-            confirmButton = {
-                TextButton(onClick = {
-                    if(editingItem2==null){
-                        products=products+
-                    }
-
-                    products = products.map {
-                        if (it.id == editingItem!!.id) it.copy(name = name) else it
-                    }
-                    editingItem = null
-                }) {
-                    Text("Guardar")
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { editingItem = null }) {
-                    Text("Cancelar")
+                Row {
+                    numberTextField(productValue) { productValue = it }
+                    numberTextField(shippingValue) { shippingValue = it }
                 }
             }
-        )
+
+        },
+        confirmButton = {
+            TextButton(onClick = {
+                onProducts(product)
+                editingItem = null
+            }) {
+                Text("Guardar")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = { editingItem = null }) {
+                Text("Cancelar")
+            }
+        }
+    )
 }
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ProductItem(
-    item: Product, isSelected: Boolean,
-    onClick: (Product) -> Unit,
-    onLongClick: (Product) -> Unit
+    item: UIProduct, isSelected: Boolean,
+    onClick: (UIProduct) -> Unit,
+    onLongClick: (UIProduct) -> Unit
 ) {
     Column(modifier = Modifier
         .fillMaxWidth()

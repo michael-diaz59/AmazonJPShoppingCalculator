@@ -1,5 +1,6 @@
 package com.onix.comprasamazon.ui.screens
 
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Tab
@@ -29,10 +30,12 @@ fun PasoAPasoApp() {
             }
         }
 
-        when (selectedTabIndex) {
-            0 -> StepOne()
-            1 -> StepTwo()
-            2 -> StepThree()
+        Crossfade(targetState = selectedTabIndex, label = "") { index ->
+            when (index) {
+                0 -> StepOne()
+                1 -> StepTwo()
+                2 -> StepThree()
+            }
         }
     }
 
