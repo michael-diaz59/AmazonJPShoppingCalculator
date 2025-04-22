@@ -32,8 +32,8 @@ class AmazonUseCases @Inject constructor(
         return ResultO.failure(getAmazon.getError())
     }
 
-    override suspend fun calculateFinalValueOfProducts(products: List<BaseProduct>): ResultO<List<BaseProduct>> {
-        finalValueOfProducts.execute(products)
+    override suspend fun calculateFinalValueOfProducts(products: List<BaseProduct>,amazon: BaseAmazon): ResultO<List<BaseProduct>> {
+        finalValueOfProducts.execute(products,amazon)
         if(getAmazon.getState()){
             return ResultO.success(finalValueOfProducts.getValueCase()!!)
         }

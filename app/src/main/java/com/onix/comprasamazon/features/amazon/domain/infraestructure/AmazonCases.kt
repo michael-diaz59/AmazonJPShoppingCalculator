@@ -8,5 +8,5 @@ import com.onix.comprasamazon.features.products.domain.business.entitites.BasePr
 interface AmazonCases {
     suspend fun editAmazon(amazon: BaseAmazon): CustomProcess
     suspend fun getAmazon(): ResultO<BaseAmazon>
-    suspend fun calculateFinalValueOfProducts(products:List<BaseProduct>): ResultO<List<BaseProduct>>
+    suspend fun calculateFinalValueOfProducts(products:List<BaseProduct>, amazon: BaseAmazon): ResultO<List<BaseProduct>>
 }

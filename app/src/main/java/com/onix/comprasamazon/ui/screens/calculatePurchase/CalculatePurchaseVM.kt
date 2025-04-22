@@ -56,7 +56,7 @@ class CalculatePurchaseVM @Inject constructor(
 
     fun calculateFinalValueOfProducts(products: List<UIProduct>) {
         viewModelScope.launch {
-            val result = amazonUseCase.calculateFinalValueOfProducts(products)
+            val result = amazonUseCase.calculateFinalValueOfProducts(products,amazon.value)
             val cache:List<UIProduct> = _products.map { it }
             if (result.isSuccessful()) {
                 for (i in cache.indices) {

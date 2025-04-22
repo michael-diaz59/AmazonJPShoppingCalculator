@@ -1,3 +1,5 @@
+package com.onix.comprasamazon.features.amazon.data.local
+
 import com.onix.comprasamazon.core.exceptions.gateway.GatewayException
 import com.onix.comprasamazon.core.exceptions.gateway.TypeGatewayException
 import com.onix.comprasamazon.core.utilities.Either
