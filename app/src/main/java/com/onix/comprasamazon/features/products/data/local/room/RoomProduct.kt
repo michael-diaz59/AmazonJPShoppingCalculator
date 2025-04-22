@@ -7,7 +7,7 @@ import com.onix.comprasamazon.features.products.domain.business.entitites.BasePr
 
 @Entity
 data class RoomProduct(
-    @PrimaryKey(autoGenerate = true) override var id: Int=0,
+    @PrimaryKey(autoGenerate = true) override var id: Long=0,
     @ColumnInfo(name = "name")override var name : String,
     @ColumnInfo(name = "shippingValue")override var shippingValue: Double =0.0,
     @ColumnInfo(name = "productValue")override var productValue: Double =0.0,
@@ -17,7 +17,11 @@ data class RoomProduct(
     companion object {
         fun baseToRoom(product : BaseProduct):RoomProduct{
 
-            return RoomProduct(product.id,product.name,product.shippingValue, product.productValue, product.finalValue, product.buyer)
+            return RoomProduct(name=product.name,
+                shippingValue=product.shippingValue,
+                productValue= product.productValue,
+                finalValue=product.finalValue,
+                buyer=product.buyer)
         }
     }
 }

@@ -7,7 +7,7 @@ import com.onix.comprasamazon.features.products.data.local.room.RoomProduct
 
 interface ProductGateway {
     suspend fun createProduct(product: BaseProduct): Either<GatewayException, Long>
-    fun editProduct(product: BaseProduct): Either<GatewayException, Boolean>
-    fun deleteProduct(product: BaseProduct): Either<GatewayException, Boolean>
-    fun getProducts(): Either<GatewayException, List<BaseProduct>>
+    suspend fun editProduct(product: BaseProduct): Either<GatewayException, Boolean>
+    suspend fun deleteProduct(product: BaseProduct): Either<GatewayException, Boolean>
+    suspend fun getProducts(): Either<GatewayException, List<BaseProduct>>
 }

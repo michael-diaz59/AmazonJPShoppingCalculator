@@ -3,12 +3,12 @@ package com.onix.comprasamazon.ui.features.product
 import com.onix.comprasamazon.features.products.domain.business.entitites.BaseProduct
 
 class UIProduct(
-    override var id: Int=0,
-    override var name : String,
+    override var id: Long=0,
+    override var name : String="",
     override var shippingValue: Double =0.0,
     override var productValue: Double =0.0,
     override var finalValue: Double =0.0,
-    override var buyer: Long
+    override var buyer: Long=0L
 ): BaseProduct(id,name,shippingValue,productValue,finalValue,buyer) {
 
     companion object {
@@ -17,12 +17,13 @@ class UIProduct(
         }
     }
 
-    fun copy(product : UIProduct){
-        name=product.name
-        shippingValue=product.shippingValue
-        productValue=product.productValue
-        finalValue=product.finalValue
-        buyer=product.buyer
+    fun copy(product : UIProduct?){
+        if(product!=null){
+            name=product.name
+            shippingValue=product.shippingValue
+            finalValue=product.finalValue
+            buyer=product.buyer
+        }
     }
 
 }

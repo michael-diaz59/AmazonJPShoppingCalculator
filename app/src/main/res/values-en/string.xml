@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">comprasAmazon</string>
+    <string name="save">save</string>
+    <string name="enterTotalAmazonCharge">Enter the total that Amazon JP charges you</string>
+    <string name="placeTheProductCosts">Place the products with their product cost and shipping cost</string>
+    <string name="elementExist">That element already exists or there is invalid data.</string>
+    <string name="errorDataEntered">There may be an error in the data entered</string>
+    <string name="unknownError">unknown error, please try again.</string>
+
+</resources>

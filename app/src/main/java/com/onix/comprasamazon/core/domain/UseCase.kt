@@ -5,11 +5,15 @@ import com.onix.comprasamazon.core.exceptions.errors.ErrorType
 
 
 abstract class UseCase<T> {
-    protected abstract var state: T
+    protected var value: T?=null
     protected var isSuccessful: Boolean = false
     protected var appError: AppError?=null
 
-    abstract fun execute()
+
+
+    fun getValueCase(): T? {
+        return value
+    }
 
     fun getError(): AppError {
         val errorR= AppError()
@@ -27,7 +31,7 @@ abstract class UseCase<T> {
     }
 
 
-    fun isSuccessful(): Boolean {
+    fun getState(): Boolean {
         return isSuccessful
     }
 }

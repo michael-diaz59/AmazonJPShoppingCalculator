@@ -1,4 +1,4 @@
-package com.onix.comprasamazon.ui.theme
+package com.onix.comprasamazon.ui.atomicDesign.quarks
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

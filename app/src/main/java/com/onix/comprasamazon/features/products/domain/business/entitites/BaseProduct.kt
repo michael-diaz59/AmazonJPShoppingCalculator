@@ -2,7 +2,7 @@ package com.onix.comprasamazon.features.products.domain.business.entitites
 
 
 abstract class BaseProduct(
-    open var id: Int,
+    open var id: Long,
     open var name: String,
     open var shippingValue: Double,
     open var productValue: Double,

@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
+    id("org.jetbrains.kotlin.plugin.compose") version "2.1.10"
     id("com.google.dagger.hilt.android")
 }
 
@@ -54,7 +55,7 @@ android {
 dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
-
+    implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.room.runtime)
     kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.lifecycle.runtime.ktx.v262)

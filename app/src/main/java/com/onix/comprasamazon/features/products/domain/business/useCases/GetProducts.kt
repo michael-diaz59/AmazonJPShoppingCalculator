@@ -5,4 +5,6 @@ import com.onix.comprasamazon.core.domain.UseCase
 
 abstract class GetProducts : UseCase<List<BaseProduct>>(){
 
+    abstract suspend fun execute()
+
 }

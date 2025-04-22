@@ -1,6 +1,5 @@
-package com.onix.comprasamazon.ui.theme
+package com.onix.comprasamazon.ui.atomicDesign.subAtomicParticles
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -10,6 +9,13 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import com.onix.comprasamazon.ui.atomicDesign.quarks.Pink40
+import com.onix.comprasamazon.ui.atomicDesign.quarks.Pink80
+import com.onix.comprasamazon.ui.atomicDesign.quarks.Purple40
+import com.onix.comprasamazon.ui.atomicDesign.quarks.Purple80
+import com.onix.comprasamazon.ui.atomicDesign.quarks.PurpleGrey40
+import com.onix.comprasamazon.ui.atomicDesign.quarks.PurpleGrey80
+import com.onix.comprasamazon.ui.atomicDesign.quarks.Typography
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,

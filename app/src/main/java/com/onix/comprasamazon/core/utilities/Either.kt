@@ -14,6 +14,15 @@ class Either<l,R> private constructor(
         }
     }
 
+    fun getRight(): R? {
+        return right
+    }
+
+    fun getLeft(): l? {
+        return left
+    }
+
+
     fun isRight(): Boolean {
         return right != null
     }

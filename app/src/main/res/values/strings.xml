@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">comprasAmazon</string>
+    <string name="save">Guardar</string>
+    <string name="enterTotalAmazonCharge">coloca el total que te cobra amazon jp</string>
+    <string name="placeTheProductCosts">coloca los productos con su costo de producto y costo de envio</string>
+    <string name="elementExist">El elemento ya existe o hay un dato inválido.</string>
+    <string name="errorDataEntered">puede haber un error en los datos ingresados</string>
+    <string name="unknownError">error desconocido, intenta de nuevo.</string>
+
 </resources>
