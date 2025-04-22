@@ -10,6 +10,7 @@ import com.onix.comprasamazon.core.exceptions.gateway.GatewayException
 import com.onix.comprasamazon.core.exceptions.gateway.TypeGatewayException
 import com.onix.comprasamazon.features.products.data.local.room.DAOProduct
 import javax.inject.Inject
+import kotlin.toString
 
 class LocalProductManager @Inject constructor(private val productRoomDB: DAOProduct) :
     ProductGateway {
@@ -29,7 +30,9 @@ class LocalProductManager @Inject constructor(private val productRoomDB: DAOProd
             } else {
                 error = GatewayException(
                     TypeGatewayException.UnKnow,
-                    mapOf<String, String>("descripcion" to "error desconocido")
+                    mapOf<String, String>("objeto" to product.toString()),
+                    "error desconocido",
+                    Exception()
                 )
                 rEither = Either.left(error)
             }
@@ -41,19 +44,25 @@ class LocalProductManager @Inject constructor(private val productRoomDB: DAOProd
             println(e)
             error = GatewayException(
                 TypeGatewayException.DataIntegrityViolationException,
-                mapOf<String, String>("descripcion" to "elementExist")
+                mapOf<String, String>("objeto" to product.toString()),
+                e.message.toString(),
+                e
             )
             return Either.left(error)
         } catch (e: SQLiteException) {
             error = GatewayException(
                 TypeGatewayException.IllegalArgument,
-                mapOf<String, String>("descripcion" to "errorDataEntered")
+                mapOf<String, String>("objeto" to product.toString()),
+                e.message.toString(),
+                e
             )
             return Either.left(error)
         }catch (e: Exception) {
             error = GatewayException(
                 TypeGatewayException.UnKnow,
-                mapOf<String, String>("descripcion" to "unknownError")
+                mapOf<String, String>("objeto" to product.toString()),
+                e.message.toString(),
+                e
             )
 
             return Either.left(error)
@@ -74,14 +83,17 @@ class LocalProductManager @Inject constructor(private val productRoomDB: DAOProd
             } else {
                 error = GatewayException(
                     TypeGatewayException.UnKnow,
-                    mapOf<String, String>("descripcion" to "error desconocido")
+                    mapOf<String, String>("descripcion" to "error desconocido"),
+                   "error desconocido",Throwable()
                 )
                 rEither = Either.left(error)
             }
         }catch (e:Exception){
             error = GatewayException(
                 TypeGatewayException.UnKnow,
-                mapOf<String, String>("descripcion" to "unknownError")
+                mapOf<String, String>("objeto" to product.toString()),
+                e.message.toString(),
+                e
             )
             rEither=Either.left(error)
         }
@@ -103,14 +115,16 @@ class LocalProductManager @Inject constructor(private val productRoomDB: DAOProd
             } else {
                 error = GatewayException(
                     TypeGatewayException.UnKnow,
-                    mapOf<String, String>("descripcion" to "error desconocido")
+                    mapOf<String, String>("descripcion" to "error desconocido"),"error desconocido",Throwable()
                 )
                 rEither = Either.left(error)
             }
         }catch (e:Exception){
             error = GatewayException(
                 TypeGatewayException.UnKnow,
-                mapOf<String, String>("descripcion" to "unknownError")
+                mapOf<String, String>("objeto" to product.toString()),
+                e.message.toString(),
+                e
             )
             rEither=Either.left(error)
         }
@@ -130,7 +144,9 @@ class LocalProductManager @Inject constructor(private val productRoomDB: DAOProd
         }catch (e:Exception){
             error = GatewayException(
                 TypeGatewayException.UnKnow,
-                mapOf<String, String>("descripcion" to "unknownError")
+                mapOf<String, String>("objeto" to "ninguno"),
+                e.message.toString(),
+                e
             )
             rEither=Either.left(error)
         }

@@ -54,6 +54,7 @@ android {
 
 dependencies {
     implementation(libs.hilt.android)
+    implementation(libs.cronet.embedded)
     kapt(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.room.runtime)

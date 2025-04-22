@@ -26,6 +26,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             calculatePurchaseVM.getProducts()
+            calculatePurchaseVM.getAmazonPrice()
             calculatePurchase.Body()
         }
     }

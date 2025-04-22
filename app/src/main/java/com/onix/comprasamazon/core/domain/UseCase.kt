@@ -32,6 +32,6 @@ abstract class UseCase<T> {
 
 
     fun getState(): Boolean {
-        return isSuccessful
+        return isSuccessful && value!=null
     }
 }

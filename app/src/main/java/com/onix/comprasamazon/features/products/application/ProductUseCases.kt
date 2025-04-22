@@ -4,11 +4,6 @@ import com.onix.comprasamazon.core.utilities.CustomProcess
 import com.onix.comprasamazon.core.utilities.ResultO
 import com.onix.comprasamazon.features.products.domain.business.entitites.BaseProduct
 import com.onix.comprasamazon.features.products.domain.infraestructure.ProductCases
-import com.onix.comprasamazon.features.products.application.cases.CreateProductCase
-import com.onix.comprasamazon.features.products.application.cases.DeleteProductCase
-import com.onix.comprasamazon.features.products.application.cases.EditProductCase
-import com.onix.comprasamazon.features.products.application.cases.GetProductCase
-import com.onix.comprasamazon.features.products.data.local.LocalProductManager
 import com.onix.comprasamazon.features.products.domain.business.useCases.CreateProduct
 import com.onix.comprasamazon.features.products.domain.business.useCases.DeleteProduct
 import com.onix.comprasamazon.features.products.domain.business.useCases.EditProduct

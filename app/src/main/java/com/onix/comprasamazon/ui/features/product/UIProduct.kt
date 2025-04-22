@@ -19,6 +19,7 @@ class UIProduct(
 
     fun copy(product : UIProduct?){
         if(product!=null){
+            id=product.id
             name=product.name
             shippingValue=product.shippingValue
             finalValue=product.finalValue
